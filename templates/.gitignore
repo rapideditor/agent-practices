@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+coverage/
+.vscode/
+!.vscode/extensions.json
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime temp files
+*.tmp
+*.temp
+
+# sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitignore version=1

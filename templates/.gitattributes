@@ -1,0 +1,23 @@
+# Normalize line endings
+* text=auto
+
+# Source files
+*.js    text eol=lf
+*.ts    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.toml  text eol=lf
+*.sh    text eol=lf
+
+# Binary files
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+
+# sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitattributes version=1
