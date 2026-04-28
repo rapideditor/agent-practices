@@ -10,4 +10,7 @@
    - Body: paste the CHANGELOG section for this release
    - Publish release
 
-<!-- sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/RELEASE.md version=1 -->
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/RELEASE.md
+-->

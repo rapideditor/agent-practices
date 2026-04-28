@@ -33,4 +33,8 @@ You are preparing release **${input:version}** for this repo. Do the following s
 
 5. **Update `package.json`** — set `"version"` to `"${input:version}"`.
 
-<!-- sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/release.prompt.md version=1 -->
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/release.prompt.md
+instructions="adapt the release workflow to this project's process; rethink steps if release tooling differs"
+-->

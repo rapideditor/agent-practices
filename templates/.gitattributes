@@ -20,4 +20,7 @@
 *.woff  binary
 *.woff2 binary
 
-# sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitattributes version=1
+# sync:
+# version=1
+# source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitattributes
+# instructions="adapt file-type entries to this project's actual file types; add missing entries without removing local-only ones"

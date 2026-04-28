@@ -2,4 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
-<!-- sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/CHANGELOG.md version=1 -->
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/CHANGELOG.md
+instructions="create only if missing; never overwrite an existing changelog"
+-->

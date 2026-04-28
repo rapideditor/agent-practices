@@ -23,4 +23,7 @@ You are performing a git commit for this repo. Do the following steps in order:
      ```
 5. Run `git push` to push commits up to the origin
 
-<!-- sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/commit.prompt.md version=1 -->
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/commit.prompt.md
+-->

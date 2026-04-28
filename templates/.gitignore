@@ -28,4 +28,7 @@ npm-debug.log*
 *.tmp
 *.temp
 
-# sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitignore version=1
+# sync:
+# version=1
+# source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitignore
+# instructions="merge only: add entries absent locally; never remove local-only entries"

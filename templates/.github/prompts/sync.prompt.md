@@ -26,26 +26,17 @@ Filter to items where `type` is `blob` and `path` starts with `templates/`. Stri
 
 ---
 
-## Version checking
+## Version and metadata checking
 
-Each synced file carries a version marker in a trailing comment:
-- **Markdown and prompt files**: `<!-- sync: source=... version=N -->`
-- **Config files** (`.gitignore`, `.gitattributes`, etc.): `# sync: source=... version=N`
+Each sync-able file carries a trailing comment at the end of the file.  The comment starts with the string 'sync:',
+followed by attributes:
+- `version`: version number, as an increasing integer
+- `source`: canonical source URL (which points back here to this repo)
+- `instructions`: optional instructions to apply when syncing the file
 
-Treat a missing marker as version `0`. **Skip the file if the local version is equal to or greater than the canonical version.** Only update when the canonical version is strictly higher.
+Treat a target file with a missing metadata comment as version `0`.
 
----
-
-## Per-file guidance
-
-Most files can be synced as-is after substituting project-specific values. Exceptions:
-
-- `.github/prompts/release.prompt.md` — also adapt the release workflow to this project's process (don't just string-replace; rethink steps if the release tooling differs)
-- `AGENTS.md` — preserve any local sections that have no counterpart in the template
-- `CONTRIBUTING.md` — adapt tooling and runtime references; keep the template's structural sections
-- `.gitattributes` — adapt file-type entries to this project's actual file types; add missing entries without removing local-only ones
-- `.gitignore` — merge only: add entries absent locally; never remove local-only entries
-- `CHANGELOG.md` — **create only if missing**; never overwrite an existing changelog
+**Skip the file if the local version is equal to or greater than the canonical version.** Only update when the canonical version is strictly higher.
 
 ---
 
@@ -55,10 +46,15 @@ For each file discovered in the manifest:
 
 1. Fetch the raw canonical content from `{raw_base_url}/templates/{file_path}`
 2. Check whether the file exists locally at `{file_path}`
-3. Version check (see above) — skip if local is already at canonical version
+3. Version check (see above) — skip if local is already at canonical version. If proceeding, note any `instructions` field in the canonical file's trailing comment.
 4. Identify all source-specific values: repo name, org, URLs, package names, author names, version numbers, tool names — anything that belongs to the canonical project rather than the template structure
 5. Replace each source-specific value with the corresponding value from this project (from `package.json` or existing local files)
-6. Create or update the local file with the adapted content
+6. Create or update the local file with the adapted content, following any `instructions` from the canonical file
+
+Finally, after all files have been processed, perform these project hygiene checks:
+
+1. If the project has a `LICENSE.md`, make sure the copyright year is set to the current year.
+2. If the project has a `package.json`, make sure the "license", "repository" fields are correct.
 
 ---
 
@@ -77,4 +73,7 @@ For **⏭️ Skipped** files: one line explaining why (e.g. "already at canonica
 
 For files that were **✅ In sync**: one line is enough.
 
-<!-- sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/sync.prompt.md version=1 -->
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/sync.prompt.md
+-->

@@ -42,4 +42,7 @@ Group findings by category. Number each suggestion sequentially across all categ
 - 👉 Improvement (best practice, clarity) — worth doing
 - 💡 Suggestion (optional, bigger change) — idea to track for future work
 
-<!-- sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/suggest.prompt.md version=1 -->
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/suggest.prompt.md
+-->

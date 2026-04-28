@@ -19,4 +19,7 @@ Update all project documentation to match the current state of the code. Fix gap
 - Agent instructions (`AGENTS.md`, `copilot-instructions`, etc.)
 - Working memory (`.scratchpad/*`)
 
-<!-- sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/reflect.prompt.md version=1 -->
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/reflect.prompt.md
+-->

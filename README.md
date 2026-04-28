@@ -34,21 +34,32 @@ templates/            # ← everything under here will be synced to consumer pro
 > Note that `.github/prompts/` is a symlink to `templates/.github/prompts/` so Copilot finds the prompts at the standard location without duplication.
 
 
-## Sync Metadata
+## Sync Metadata Comment
 
-Every sync-ready file carries a trailing comment with metadata:
-- `source`: canonical source URL (which points back here to this repo)
+Each sync-able file carries a trailing comment at the end of the file.  The comment starts with the string 'sync:',
+followed by attributes:
 - `version`: version number, as an increasing integer
+- `source`: canonical source URL (which points back here to this repo)
+- `instructions`: optional instructions to apply when syncing the file
+
+For example:
 
 ```markdown
-<!-- sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/AGENTS.md version=1 -->
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/AGENTS.md
+instructions="preserve any local sections that have no counterpart in the template"
+-->
 ```
 
 ```sh
-# sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitignore version=1
+# sync:
+# version=1
+# source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitignore
+# instructions="merge only: add entries absent locally; never remove local-only entries"
 ```
 
-The sync prompt treats a missing metadata comment as version `0` and only updates when the canonical version is strictly higher.
+The sync prompt treats an existing file with no metadata comment as version `0`.
 
 > [!TIP]
 > Any file format that supports comments can be synced through this process!

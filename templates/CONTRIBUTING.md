@@ -17,4 +17,8 @@ We welcome contributions made with the help of AI tools.
 If you use them, you are responsible for understanding and reviewing the output before submitting it.
 Generated code, issues, and PR descriptions should be clear and relevant — not verbose for the sake of it.
 
-<!-- sync: source=https://github.com/rapideditor/agent-practices/blob/main/templates/CONTRIBUTING.md version=1 -->
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/CONTRIBUTING.md
+instructions="adapt tooling and runtime references; keep the template's structural sections"
+-->
