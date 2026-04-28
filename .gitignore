@@ -1,0 +1,12 @@
+.DS_Store
+SCRATCHPAD.md
+
+npm-debug.log
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+.vscode/
+coverage/
+dist/
+node_modules/
