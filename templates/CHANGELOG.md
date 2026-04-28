@@ -1,9 +1,25 @@
-# Changelog
+# What's New
 
-All notable changes to this project will be documented in this file.
+**{project name}** is an open source project. You can submit bug reports, help out,
+or learn more by visiting our project page on GitHub:  :octocat: https://github.com/{owner}/{repo}
+
+Please star our project on GitHub to show your support! ⭐️
+
+_Breaking changes, which may affect downstream projects, are marked with a_ ⚠️
+
+
+<!--
+# Example:
+# A.B.C
+##### YYYY-MMM-DD
+*
+
+[#xx]: https://github.com/{owner}/{repo}/issues/xx
+-->
+
 
 <!-- sync:
 version=1
 source=https://github.com/rapideditor/agent-practices/blob/main/templates/CHANGELOG.md
-instructions="create only if missing; never overwrite an existing changelog"
+instructions="Create only if missing, substituting the project name and repo details for this project; never overwrite the details of an existing changelog."
 -->

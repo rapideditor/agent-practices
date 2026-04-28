@@ -1,26 +1,19 @@
-# Normalize line endings
-* text=auto
+# Force LF line endings for all text files
+* text=auto eol=lf
+*.bat eol=crlf
 
-# Source files
-*.js    text eol=lf
-*.ts    text eol=lf
-*.json  text eol=lf
-*.md    text eol=lf
-*.yml   text eol=lf
-*.yaml  text eol=lf
-*.toml  text eol=lf
-*.sh    text eol=lf
+*.css linguist-detectable
+*.json linguist-detectable
+*.jsonc linguist-detectable
+*.json5 linguist-detectable
+*.md linguist-documentation
+*.svg linguist-detectable
+*.yaml linguist-detectable
 
-# Binary files
-*.png   binary
-*.jpg   binary
-*.jpeg  binary
-*.gif   binary
-*.ico   binary
-*.woff  binary
-*.woff2 binary
+docs/** linguist-documentation
+dist/** linguist-generated
 
 # sync:
 # version=1
 # source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitattributes
-# instructions="adapt file-type entries to this project's actual file types; add missing entries without removing local-only ones"
+# instructions="adapt file-type entries to this project's actual file types; add missing entries but do not replace local edits"

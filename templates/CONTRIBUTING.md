@@ -1,13 +1,39 @@
 # Contributing
 
+<!-- template: include one section per major technology this project uses; remove sections that don't apply -->
+
 This project uses **GitHub** to track issues and manage our source code.
 - Check out the [Git Guides](https://github.com/git-guides) to learn more.
 
-If you want to contribute, you'll probably need to:
-- Install the project's runtime (see `README.md` for details)
-- `git clone` this repo
+This project uses **TypeScript**, a superset of the **JavaScript** programming language.
+- Check out the [TypeScript Docs](https://www.typescriptlang.org/docs/) to learn more.
+- [MDN's JavaScript guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide) is a great resource for learning about JavaScript.
+
+This project uses **Bun** as our development environment.
+- Check out the [Bun Docs](https://bun.com/docs) to learn more.
+- (It's similar to other JavaScript tools like Node/Jest/Esbuild/Vite, so knowing any of those already will help you a lot).
+- Bun supports both JavaScript and TypeScript.
+
+If you want to contribute to {project name}, you'll probably need to:
+- [Install Bun](https://bun.com/docs/installation)
+- `git clone` {repo url}
 - `cd` into the project folder
-- Install dependencies
+- `bun install` the dependencies
+
+As you change things, you'll want to `bun run all` to ensure that things are working.
+(This command runs `clean`, `check`, `build`, and `test`.)
+
+You can also type-check the project without emitting files:
+- `bun run check:types` — runs `tsc --noEmit` across all source, script, and test files.
+
+<!-- optional: include if the project has a local dev server -->
+You can also test the code in a local server:
+- `bun start` - then open `http://127.0.0.1:8080/` in a browser.
+
+It's also good to check on the dependencies sometimes with commands like:
+- `bun outdated`  - what packages have updates available?
+- `bun update --interactive`  - choose which updates to apply
+
 
 Try to keep things simple!
 
@@ -20,5 +46,5 @@ Generated code, issues, and PR descriptions should be clear and relevant — not
 <!-- sync:
 version=1
 source=https://github.com/rapideditor/agent-practices/blob/main/templates/CONTRIBUTING.md
-instructions="adapt tooling and runtime references; keep the template's structural sections"
+instructions="keep the GitHub intro and AI-Assisted sections; replace the technology sections with only the technologies that this project uses (language, runtime, package manager, etc.), adapting the install/dev commands from package.json or equivalent; remove sections for technologies not used; include or omit paragraphs marked 'optional:' based on whether the condition applies to this project"
 -->
