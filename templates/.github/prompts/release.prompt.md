@@ -24,7 +24,7 @@ You are preparing release **${input:version}** for this repo. Do the following s
 
 4. **Update `CHANGELOG.md`** — insert a new section immediately above the previous release heading. Follow the existing format exactly:
    - Header: `# ${input:version}`
-   - Date: `##### YYYY-Mon-DD` (use today's date)
+   - Date: `##### YYYY-MMM-DD` (use today's date)
    - Bullet points for each user-visible change (features, fixes, improvements)
    - For bug/fix commits, write a plain bullet
    - Internal/dev-only commits (CI config, agent setup, etc.) can be omitted or grouped into a single terse bullet

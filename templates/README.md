@@ -2,6 +2,7 @@
 
 {one-line description}
 
+<!-- optional: include if the project is published to npm -->
 [![npm version](https://badge.fury.io/js/{npm-package-name}.svg)](https://badge.fury.io/js/{npm-package-name})
 [![License](https://img.shields.io/badge/license-ISC-blue.svg)](LICENSE.md)
 

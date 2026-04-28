@@ -62,5 +62,5 @@ When asked to do one of these tasks, prefer using the prompt file rather than im
 <!-- sync:
 version=1
 source=https://github.com/rapideditor/agent-practices/blob/main/templates/AGENTS.md
-instructions="preserve any local sections that have no counterpart in the template"
+instructions="keep the local Prompt Files list (it reflects this project's actual prompts) and any local sections that have no counterpart in the template; adopt new General Guidelines subsections from the template if absent locally"
 -->

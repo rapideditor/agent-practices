@@ -5,6 +5,8 @@ argument-hint: additional optional context
 
 Find concrete improvements and flag things worth tracking for future work. Respect the existing style; don't over-engineer. Report findings only — do not make edits. The user will choose which suggestions to implement.
 
+If the user provided additional context with the prompt, treat it as a focus area (e.g. "focus on TypeScript types", "performance only").
+
 ## Steps
 
 1. Read `AGENTS.md` to understand the project structure.
@@ -25,11 +27,11 @@ Skip categories where things look fine. Don't invent problems.
 
 **Performance** — unnecessary looping, extra copies, redundant calls, known slow browser APIs
 
-**TypeScript** — imprecise types, overuse of `any`/`unknown`, untyped third-party modules, irrelevant `tsconfig.json` options
+**TypeScript** (if used) — imprecise types, overuse of `any`/`unknown`, untyped third-party modules, irrelevant `tsconfig.json` options
 
 **Testing** — coverage gaps, tests that don't actually verify what they claim
 
-**Runtime / tooling** — `node:*` APIs where Bun-native equivalents exist, `npm`/`yarn` artifacts in scripts, dependencies Bun now handles natively
+**Runtime / tooling** (Bun-specific entries apply if used) — `node:*` APIs where Bun-native equivalents exist, `npm`/`yarn` artifacts in scripts, dependencies Bun now handles natively
 
 **Developer Experience** — missing or misleading `package.json` scripts, incomplete `.gitignore`/`.gitattributes`, missing docs or source comments
 
@@ -45,4 +47,5 @@ Group findings by category. Number each suggestion sequentially across all categ
 <!-- sync:
 version=1
 source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/prompts/suggest.prompt.md
+instructions="steps and categories may be adapted to this project's stack — keep categories that apply, drop ones that don't, and add new ones if the project uses tooling not represented here"
 -->

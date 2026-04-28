@@ -1,10 +1,13 @@
 ---
 description: Sync scaffold files in this project against the canonical agent-practices repo
+argument-hint: additional optional context
 ---
 
 You are doing a scaffold sync against the canonical source repo: **https://github.com/rapideditor/agent-practices**
 
 For each file discovered in the canonical `templates/` directory, fetch it, compare it to the local version, and **create or update the local file** — substituting any source-specific details with this project's equivalent. The goal is to carry the source's structure and generic content forward while keeping this project's identity intact.
+
+If the user provided additional context with the prompt, treat it as an extra constraint or scope hint (e.g. "only sync prompts", "force-update CONTRIBUTING.md").
 
 ## Setup
 
@@ -53,8 +56,8 @@ For each file discovered in the manifest:
 
 Finally, after all files have been processed, perform these project hygiene checks:
 
-1. If the project has a `LICENSE.md`, make sure the copyright year is set to the current year.
-2. If the project has a `package.json`, make sure the "license", "repository" fields are correct.
+1. If the project has a `LICENSE.md`, flag if the copyright year looks stale (some projects use a year range).
+2. If the project has a `package.json`, make sure the "license" and "repository" fields are correct.
 
 ---
 
