@@ -20,6 +20,9 @@ coverage/
 !.vscode/extensions.json
 .idea/
 
+# Agent memory
+SCRATCHPAD.md
+
 # Logs
 *.log
 npm-debug.log*
