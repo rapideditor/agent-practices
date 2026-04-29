@@ -16,10 +16,3 @@ _Breaking changes, which may affect downstream projects, are marked with a_ тЪая
 
 [#xx]: https://github.com/{owner}/{repo}/issues/xx
 -->
-
-
-<!-- sync:
-version=1
-source=https://github.com/rapideditor/agent-practices/blob/main/templates/CHANGELOG.md
-instructions="Create only if missing, substituting the project name and repo details for this project; never overwrite the details of an existing changelog."
--->

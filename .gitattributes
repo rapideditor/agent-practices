@@ -2,4 +2,13 @@
 * text=auto eol=lf
 *.bat eol=crlf
 
-*.md linguist-detectable
+*.css linguist-detectable
+*.json linguist-detectable
+*.jsonc linguist-detectable
+*.json5 linguist-detectable
+*.md linguist-documentation
+*.svg linguist-detectable
+*.yaml linguist-detectable
+
+docs/** linguist-documentation
+dist/** linguist-generated

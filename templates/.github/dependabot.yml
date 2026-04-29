@@ -11,8 +11,3 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-
-# sync:
-# version=1
-# source=https://github.com/rapideditor/agent-practices/blob/main/templates/.github/dependabot.yml
-# instructions="skip entirely if this project already has Dependabot configured; otherwise adapt the package-ecosystem entries to match this project's actual dependency managers"

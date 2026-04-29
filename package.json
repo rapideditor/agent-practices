@@ -1,12 +1,12 @@
 {
   "name": "@rapideditor/agent-practices",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rapideditor/agent-practices.git"
   },
-  "description": "A seed repository for agent scaffolding across projects",
+  "description": "Shared agent guidelines and scaffold files that stay in sync across projects.",
   "keywords": [
     "prompts",
     "skills"

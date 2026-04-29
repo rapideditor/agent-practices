@@ -1,15 +1,16 @@
 
 # agent-practices
 
-A canonical seed file repository for agent file scaffolding.
+Shared agent guidelines and scaffold files that stay in sync across projects.
 
 ## How it works
 
-1. Place common files here
-2. In another project, save the `.github/prompts/sync.prompt.md` file and run `/sync` prompt
-3. Your agent will look here for the "best" versions of the files and apply updates to the local copy.
+1. Common files live under `templates/` in this repo.
+2. The file [`templates/.sync.manifest.md`](templates/.sync.manifest.md) lists every syncable file, its current canonical version, and any per-file instructions.
+3. In a downstream project, save [`templates/.github/prompts/sync.prompt.md`](templates/.github/prompts/sync.prompt.md) as `.github/prompts/sync.prompt.md` and run `/sync`.
+4. The prompt fetches the manifest, compares versions against the project's local `.sync.manifest.md`, and applies updates.
 
-The sync is version-aware — files are only updated when the canonical version is higher than the local copy.
+The sync is version-aware — files are only updated when the canonical version listed in the source manifest is higher than the version recorded in the project's local manifest.
 
 
 ## Repository layout
@@ -18,6 +19,7 @@ The sync is version-aware — files are only updated when the canonical version 
 
 ```sh
 templates/            # ← everything under here will be synced to consumer projects
+  .sync.manifest.md   # ← THE source of truth: file list, versions, instructions
   .gitattributes
   .gitignore
   AGENTS.md
@@ -31,38 +33,17 @@ templates/            # ← everything under here will be synced to consumer pro
 ```
 
 > [!NOTE]
-> Note that `.github/prompts/` is a symlink to `templates/.github/prompts/` so Copilot finds the prompts at the standard location without duplication.
+> `.github/prompts/` at the repo root is a symlink to `templates/.github/prompts/` so Copilot finds the prompts at the standard location without duplication.
 
 
-## Sync Metadata Comment
+## Sync metadata
 
-Each sync-able file carries a trailing comment at the end of the file.  The comment starts with the string 'sync:',
-followed by attributes:
-- `version`: version number, as an increasing integer
-- `source`: canonical source URL (which points back here to this repo)
-- `instructions`: optional instructions to apply when syncing the file
+All sync metadata — file paths, versions, per-file instructions — lives in [`templates/.sync.manifest.md`](templates/.sync.manifest.md). Template files themselves carry no sync metadata; they're clean copies ready to drop into a downstream project.
 
-For example:
-
-```markdown
-<!-- sync:
-version=1
-source=https://github.com/rapideditor/agent-practices/blob/main/templates/AGENTS.md
-instructions="preserve any local sections that have no counterpart in the template"
--->
-```
-
-```sh
-# sync:
-# version=1
-# source=https://github.com/rapideditor/agent-practices/blob/main/templates/.gitignore
-# instructions="merge only: add entries absent locally; never remove local-only entries"
-```
-
-The sync prompt treats an existing file with no metadata comment as version `0`.
+Downstream projects keep a `.sync.manifest.md` at their repo root that records which versions of which files they've received. The `/sync` prompt updates this file as part of every run; no other file is modified for bookkeeping.
 
 > [!TIP]
-> Any file format that supports comments can be synced through this process!
+> Because metadata lives in the manifest rather than inline comments, **any file format can be synced** — including ones that don't support comments (e.g. JSON).
 
 
 ### License
