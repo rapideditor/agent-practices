@@ -42,9 +42,6 @@ All sync metadata — file paths, versions, per-file instructions — lives in [
 
 Downstream projects keep a `.sync.manifest.md` at their repo root that records which versions of which files they've received. The `/sync` prompt updates this file as part of every run; no other file is modified for bookkeeping.
 
-> [!TIP]
-> Because metadata lives in the manifest rather than inline comments, **any file format can be synced** — including ones that don't support comments (e.g. JSON).
-
 
 ### License
 
