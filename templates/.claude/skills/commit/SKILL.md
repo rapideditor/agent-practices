@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Stage, commit, and push all changes in this repo
+description: Stage and commit all changes in this repo
 disable-model-invocation: true
 argument-hint: commit detail to include, for example: `(closes ​#123)`
 ---
@@ -23,4 +23,3 @@ You are performing a git commit for this repo. Do the following steps in order:
      ```
      printf '%s\n' 'First line' '' 'closes #123' > /tmp/commitmsg.txt
      ```
-5. Run `git push` to push commits up to the origin
