@@ -90,4 +90,4 @@ Then one numbered list (numbers run across sections, so the user can say "do 1, 
 - 👉 Worth doing (outdated dependency, deprecated option, sync behind)
 - 💡 Worth tracking (bigger change, a newer approach to consider)
 
-End with what to do first, and whether `/suggest` or `/bughunt` is worth running next.
+End with what to do first, and whether `/suggest`, `/bughunt`, or `/triage` (for a backlog of open issues and PRs) is worth running next.

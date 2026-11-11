@@ -26,6 +26,7 @@ Each skill lives at [`templates/.claude/skills/<name>/SKILL.md`](templates/.clau
 | [`/release`](templates/.claude/skills/release/SKILL.md) | Prepares a release: validates the version, updates `CHANGELOG.md`, bumps `package.json` | Yes | you |
 | [`/suggest`](templates/.claude/skills/suggest/SKILL.md) | Reviews the codebase and suggests improvements as a numbered list | No, report only | you or the agent |
 | [`/sync`](templates/.claude/skills/sync/SKILL.md) | Syncs scaffold files from this repo into a downstream project | Yes | you |
+| [`/triage`](templates/.claude/skills/triage/SKILL.md) | Triages open issues and PRs: already fixed, duplicates, stale, ready to merge, quick wins, with draft replies | No, report only | you or the agent |
 
 
 ## Repository layout
