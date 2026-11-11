@@ -24,6 +24,7 @@ Try to keep things simple!
 - Everything synced to downstream projects lives in `templates/`. Improve shared files here first, then `/sync` them down — don't improve them locally in a downstream project.
 - When you make a meaningful change to a file in `templates/`, bump its version in [`templates/.sync.manifest.md`](templates/.sync.manifest.md). Cosmetic changes (typos, whitespace) don't need a bump.
 - When you add a file, add it to **both** the version table and the per-file instructions in the manifest. When it's a skill, also add it to the Skills table in [`README.md`](README.md#skills).
+- In a skill's YAML frontmatter, put values in double quotes if they contain `: ` or ` #`. Unquoted, `: ` is a YAML error and ` #` starts a comment that cuts off the rest of the line. Claude Code is forgiving about this, but other hosts may not be.
 - Bumping `.claude/skills/sync/SKILL.md` makes every downstream project's next `/sync` stop after Phase 1 and ask to be re-run, so batch sync skill changes where you can.
 - Some root files are symlinks into `templates/` (`AGENTS.md`, `.editorconfig`, `.claude/skills/`). `.gitignore` and `.gitattributes` are copies instead, because Git won't read them through a symlink. Keep them identical to their templates.
 

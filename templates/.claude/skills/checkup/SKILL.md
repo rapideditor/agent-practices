@@ -1,7 +1,7 @@
 ---
 name: checkup
 description: Check up on a repo after time away — where things stand, whether it still builds, security alerts, outdated dependencies, sync manifest drift, and what a newer model would do differently. Reports a numbered list; makes no edits. Use when returning to a project after a while, or when asked for a checkup or health check.
-argument-hint: optional focus, for example: `security only`, `skip the build`
+argument-hint: "optional focus, for example: `security only`, `skip the build`"
 ---
 
 Give this repo a checkup after time away: find out where things stand, what has drifted while nobody was looking, and what you'd do differently now. This is about **drift since the last round of work**, not a general code review (that's `/suggest`).

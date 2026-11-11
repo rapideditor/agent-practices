@@ -2,7 +2,7 @@
 name: release
 description: Prepare a new release (CHANGELOG, version bump)
 disable-model-invocation: true
-argument-hint: version number, for example: `A.B.C` or `A.B.C-pre.D`
+argument-hint: "version number, for example: `A.B.C` or `A.B.C-pre.D`"
 ---
 
 You are preparing a release for this repo. The new release version is the argument the user passed when invoking this skill (e.g. `/release 1.2.3`), written as `VERSION` below. If no version was provided, ask the user for it and stop.

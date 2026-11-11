@@ -2,7 +2,7 @@
 name: commit
 description: Stage and commit all changes in this repo
 disable-model-invocation: true
-argument-hint: commit details or instructions, for example: `and push`, `(closes ​#123)`
+argument-hint: "commit details or instructions, for example: `and push`, `closes #123`"
 ---
 
 You are performing a git commit for this repo.

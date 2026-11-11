@@ -1,7 +1,7 @@
 ---
 name: triage
 description: Triage open GitHub issues and pull requests — find what's already fixed, duplicated, stale, ready to merge, or a quick win, with draft replies for anything worth closing. Reports a numbered list; changes nothing on GitHub. Use when asked to triage, go through the backlog, or review open issues and PRs.
-argument-hint: optional scope, for example: `PRs only`, `label:bug`, `last 50`
+argument-hint: "optional scope, for example: `PRs only`, `label:bug`, `last 50`"
 ---
 
 Go through the project's open issues and pull requests and work out what to do with each: close, merge, fix, ask, or leave. The goal is a backlog the maintainer can act on in one sitting.
