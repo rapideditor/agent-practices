@@ -26,7 +26,7 @@ Try to keep things simple!
 - When you add a file, add it to **both** the version table and the per-file instructions in the manifest. When it's a skill, also add it to the Skills table in [`README.md`](README.md#skills).
 - In a skill's YAML frontmatter, put values in double quotes if they contain `: ` or ` #`. Unquoted, `: ` is a YAML error and ` #` starts a comment that cuts off the rest of the line. Claude Code is forgiving about this, but other hosts may not be.
 - Bumping `.claude/skills/sync/SKILL.md` makes every downstream project's next `/sync` stop after Phase 1 and ask to be re-run, so batch sync skill changes where you can.
-- Some root files are symlinks into `templates/` (`AGENTS.md`, `.editorconfig`, `.claude/skills/`). `.gitignore` and `.gitattributes` are copies instead, because Git won't read them through a symlink. Keep them identical to their templates.
+- Some root files are symlinks into `templates/` (`AGENTS.md`, `.editorconfig`, `.claude/skills/`). `.gitignore` and `.gitattributes` are copies instead, because Git won't read them through a symlink. `knowledge/README.md` is a copy too, so GitHub shows it when you open the folder. Keep them identical to their templates.
 - `playbooks/` and `lessons/` aren't synced or versioned, so changes there need no manifest bump. Follow the format in each folder's `README.md`, keep its index up to date, and update an entry's "verified" note when you re-check it.
 - Everything in this repo is public. Keep private details out of playbooks and lessons, as each folder's `README.md` describes.
 

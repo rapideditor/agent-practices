@@ -16,11 +16,12 @@ This skill assumes a Bun project. For other ecosystems, use the equivalent comma
 
 Before running anything, recover context:
 
-- Read `AGENTS.md`, the project's working notes (e.g. `SCRATCHPAD.md`, see `AGENTS.md`), and skim the `README`.
+- Read `AGENTS.md`, the project's knowledge (`knowledge/current.md` and `knowledge/backlog.md`, see `AGENTS.md`), a root `PRIVATE.md` if there is one, and skim the `README`.
 - `git log -1 --format='%ad %s' --date=short` gives the **last-activity date**. It anchors section 6.
 - `git status`, `git stash list`, unpushed commits (`git log @{u}..` if there's an upstream), and local branches not merged into the default branch.
 - If `gh` is available: open PRs and issues (`gh pr list`, `gh issue list`), and recent CI runs on the default branch (`gh run list --branch <default> --limit 5`).
-- Open items in the working notes. Some may be easy now, or obsolete.
+- Open items in `current.md` and `backlog.md`. Some may be easy now, or obsolete.
+- `knowledge/` files over the size budgets in `knowledge/README.md`. Suggest `/reflect` to prune them.
 
 ## 2. Baseline health
 

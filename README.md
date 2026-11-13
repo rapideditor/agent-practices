@@ -22,14 +22,14 @@ Each skill lives at [`templates/.claude/skills/<name>/SKILL.md`](templates/.clau
 | [`/bughunt`](templates/.claude/skills/bughunt/SKILL.md) | Hunts for logic bugs in the current batch of work, using parallel reviewers and randomized invariant tests | No, report only | you |
 | [`/checkup`](templates/.claude/skills/checkup/SKILL.md) | Checks a repo after time away: baseline build and tests, security alerts, outdated dependencies, sync drift, and what a newer model would do differently | No, report only | you or the agent |
 | [`/commit`](templates/.claude/skills/commit/SKILL.md) | Stages and commits all changes with a summarized message (doesn't push) | Commits | you |
-| [`/reflect`](templates/.claude/skills/reflect/SKILL.md) | Brings docs, agent instructions, and working notes up to date with recent work | Yes, docs | you or the agent |
+| [`/reflect`](templates/.claude/skills/reflect/SKILL.md) | Brings docs, agent instructions, and project knowledge up to date with recent work, and prunes stale notes | Yes, docs | you or the agent |
 | [`/release`](templates/.claude/skills/release/SKILL.md) | Prepares a release: validates the version, updates `CHANGELOG.md`, bumps `package.json` | Yes | you |
 | [`/suggest`](templates/.claude/skills/suggest/SKILL.md) | Reviews the codebase and suggests improvements as a numbered list | No, report only | you or the agent |
 | [`/sync`](templates/.claude/skills/sync/SKILL.md) | Syncs scaffold files from this repo into a downstream project | Yes | you |
 | [`/triage`](templates/.claude/skills/triage/SKILL.md) | Triages open issues and PRs: already fixed, duplicates, stale, ready to merge, quick wins, with draft replies | No, report only | you or the agent |
 
 
-## Shared knowledge
+## Shared playbooks and lessons
 
 Alongside the synced templates, this repo keeps knowledge that applies across projects. It's never synced: agents fetch it when it's relevant, and the synced `AGENTS.md` tells them where to find it.
 
@@ -43,8 +43,16 @@ So there are three layers:
 | Layer | Where | How it gets to a project |
 |-------|-------|--------------------------|
 | Templates: steady-state files and skills | `templates/` | Synced by `/sync`, versioned in the manifest |
-| Shared knowledge: playbooks and lessons | `playbooks/`, `lessons/` | Fetched on demand, not versioned |
-| Project memory | Each project's own notes (see its `AGENTS.md`) | Stays in the project |
+| Shared playbooks and lessons | `playbooks/`, `lessons/` | Fetched on demand, not versioned |
+| Project knowledge | Each project's `knowledge/` folder (committed, public) and `PRIVATE.*` files (gitignored) | Stays in the project; only `knowledge/README.md` is synced |
+
+## Project knowledge
+
+Each project keeps its own notes in a committed `knowledge/` folder: work in progress, the backlog, a month-by-month summary of completed work, decisions, lessons, and quirks. Keeping them public and in git means every contributor, human or agent, starts with the same context. The synced [`knowledge/README.md`](templates/knowledge/README.md) sets the conventions, including size budgets and when to prune; `/reflect` does the pruning.
+
+Notes that shouldn't be public go in gitignored `PRIVATE.*` files, which can be in any folder. Projects that used the older gitignored `SCRATCHPAD.md` are moved over by `/sync`: it renames the file to `PRIVATE.md`, then suggests which entries could move into `knowledge/`.
+
+Projects with larger systems can also keep design docs in an optional `design/` folder, which `AGENTS.md` tells agents to read before changing those systems.
 
 
 ## Repository layout
@@ -52,6 +60,7 @@ So there are three layers:
 `templates/` is the single source of truth for synced files.
 
 ```sh
+knowledge/            # ← this repo's own project knowledge (see templates/knowledge/README.md)
 playbooks/            # ← one-time upgrade guides, fetched on demand (not synced)
   README.md           # ← index and format
   …
@@ -66,6 +75,8 @@ templates/            # ← everything under here will be synced to consumer pro
   CHANGELOG.md
   CONTRIBUTING.md
   …
+  knowledge/
+    README.md         # ← conventions for each project's knowledge/ folder
   .claude/
     skills/           # ← Agent Skills, found by Claude Code and VS Code Copilot
       sync/
