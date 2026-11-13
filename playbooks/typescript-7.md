@@ -21,7 +21,7 @@ Much faster type-checking and builds, and it's where TypeScript development happ
    - `esModuleInterop: false`, `allowSyntheticDefaultImports: false`, `alwaysStrict: false`
    - Options removed earlier (`importsNotUsedAsValues`, `preserveValueImports`, `suppressImplicitAnyIndexErrors`, `keyofStringsOnly`, `charset`, `out`) are now unknown options.
 4. If `tsconfig.json` didn't set `strict`, expect new errors: it's on by default now.
-5. Run the build and diff any generated `.d.ts` files against the previous build.
+5. Run the build and diff any generated `.d.ts` files against the previous build. If the build writes files (`outDir` or `declarationDir`) from sources in a subfolder like `src/`, set `"rootDir"` to that folder (e.g. `"rootDir": "src"`). Without it the build fails with error TS5011, which `tsc --noEmit` doesn't report. The output layout stays the same.
 
 ## Gotchas
 
