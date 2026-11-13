@@ -21,3 +21,7 @@ If the user provided additional context with the prompt, treat it as a focus are
 - Markdown files (`README`, design docs, contributing guides)
 - Agent instructions and skills (`AGENTS.md`, `.claude/skills/`, `copilot-instructions`, etc.)
 - Working memory — e.g. `SCRATCHPAD.md`, `.scratchpad/*`, or whatever convention this project uses (see `AGENTS.md`)
+
+## Shared knowledge
+
+agent-practices keeps playbooks and lessons that apply across projects (see `AGENTS.md`). Don't edit them from here. Instead, if this work turned up something general (a tool gotcha, an upgrade step, a playbook or lesson that was wrong or out of date), end with a short list of suggested additions or fixes, drafted in the format the folder's `README.md` describes. Open an issue or PR on agent-practices only if the user agrees. Leave out anything specific to this project, and anything private.

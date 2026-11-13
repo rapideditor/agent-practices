@@ -66,6 +66,7 @@ You are probably a newer model than whatever last worked here. Look at what chan
 - Runtime and language features that replace hand-rolled code or a dependency (new Bun APIs, newer TypeScript or ECMAScript features).
 - Deprecated APIs, config options, and patterns still in use (`tsconfig.json`, `bunfig.toml`, workflows, scripts).
 - Better tools or services for jobs the project does in a roundabout way.
+- **Playbooks**: fetch `https://raw.githubusercontent.com/rapideditor/agent-practices/main/playbooks/README.md` and check each playbook's "Applies when" against this project. Make each one that applies its own item, linking the playbook, and note any order between them.
 - **Agent instructions** in `AGENTS.md` and `.claude/skills/`: workarounds for older models' limits that are no longer needed, instructions that host features now cover, and stale project facts. If the fix belongs in a synced file, say it should go to agent-practices rather than be changed locally.
 
 Be specific: name the file, what to change, and why it's better now. If you aren't sure something is newer than the last-activity date, or stable yet, check the docs or say so. Don't pad this section; no items is a fine answer.

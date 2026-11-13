@@ -14,6 +14,14 @@ If a `SCRATCHPAD.md` file exists at the repo root (gitignored), read it at sessi
 
 This project has reusable agent skills in `.claude/skills/`: one folder per skill, each with a `SKILL.md` in the open Agent Skills format. Claude Code and VS Code Copilot both find them there and list them in the `/` menu (or equivalent). When a task matches an existing skill, prefer invoking it over improvising — the skills encode project-specific conventions.
 
+## Shared knowledge
+
+[agent-practices](https://github.com/rapideditor/agent-practices) also keeps knowledge that applies across projects. It isn't synced here; fetch it when it's relevant:
+- **Playbooks** for one-time upgrades (e.g. ESLint → oxlint, TypeScript 7): `https://raw.githubusercontent.com/rapideditor/agent-practices/main/playbooks/README.md`
+- **Lessons**, gotchas with the tools we use (Bun, TypeScript, packaging, git): `https://raw.githubusercontent.com/rapideditor/agent-practices/main/lessons/README.md`
+
+Before an upgrade, a tooling change, or packaging work, read the index and then only the entries that apply. This project's own conventions win where they differ. If you learn something that would help other projects, say so; `/reflect` can draft it for agent-practices.
+
 ## General Guidelines
 
 ### Communication style
