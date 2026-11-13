@@ -11,7 +11,7 @@ Playbooks aren't synced into downstream projects. An agent fetches this index wh
 | [ESLint → oxlint](eslint-to-oxlint.md) | `eslint` is in `devDependencies` |
 | [TypeScript 7](typescript-7.md) | `typescript` is below 7 |
 | [ESM only](esm-only.md) | A published package still ships a CommonJS build |
-| [Package checks](package-checks.md) | A published package doesn't run publint and arethetypeswrong |
+| [Package checks](package-checks.md) | A published package doesn't run publint and arethetypeswrong, or hasn't checked that its types' imports are in `dependencies` |
 
 ## Using a playbook
 
