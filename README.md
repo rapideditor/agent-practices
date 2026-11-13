@@ -29,11 +29,35 @@ Each skill lives at [`templates/.claude/skills/<name>/SKILL.md`](templates/.clau
 | [`/triage`](templates/.claude/skills/triage/SKILL.md) | Triages open issues and PRs: already fixed, duplicates, stale, ready to merge, quick wins, with draft replies | No, report only | you or the agent |
 
 
+## Shared knowledge
+
+Alongside the synced templates, this repo keeps knowledge that applies across projects. It's never synced: agents fetch it when it's relevant, and the synced `AGENTS.md` tells them where to find it.
+
+- [`playbooks/`](playbooks/README.md): step-by-step guides for one-time upgrades, like switching from ESLint to oxlint or moving to TypeScript 7. `/checkup` lists the ones that apply to a project.
+- [`lessons/`](lessons/README.md): gotchas with the tools we use, grouped by topic (Bun, TypeScript, packaging, git, shell).
+
+Each folder's `README.md` is the index, plus the format for new entries. New playbooks and lessons come from real work in downstream projects: `/reflect` suggests additions, and they land here as PRs.
+
+So there are three layers:
+
+| Layer | Where | How it gets to a project |
+|-------|-------|--------------------------|
+| Templates: steady-state files and skills | `templates/` | Synced by `/sync`, versioned in the manifest |
+| Shared knowledge: playbooks and lessons | `playbooks/`, `lessons/` | Fetched on demand, not versioned |
+| Project memory | Each project's own notes (see its `AGENTS.md`) | Stays in the project |
+
+
 ## Repository layout
 
-`templates/` is the single source of truth.
+`templates/` is the single source of truth for synced files.
 
 ```sh
+playbooks/            # ← one-time upgrade guides, fetched on demand (not synced)
+  README.md           # ← index and format
+  …
+lessons/              # ← cross-project gotchas by topic, fetched on demand (not synced)
+  README.md           # ← index and format
+  …
 templates/            # ← everything under here will be synced to consumer projects
   .sync.manifest.md   # ← THE source of truth: file list, versions, instructions
   .gitattributes
