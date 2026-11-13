@@ -42,3 +42,4 @@ Each project keeps its notes in a committed `knowledge/` folder, replacing the g
 - Private notes go in gitignored `PRIVATE.*` files, in any folder. One pattern covers `.md`, `.json` and anything later.
 - `design/` stays a separate, optional folder: design docs are longer-lived, and written for people as much as agents.
 - No `.gitattributes` line for `knowledge/`: `*.md linguist-documentation` already covers it.
+- Size budgets are in KB, not lines. Rapid's `completed.md` was 130 lines but 46 KB, because each entry was one long paragraph. The numbers: `current.md` is read every session, so about 8 KB (2k tokens). Other files are read on demand, so about 40 KB (10k tokens) each, which Rapid's larger files showed is still usable in one read. About 100 KB is the hard ceiling, since Claude Code's Read tool refuses files over about 25k tokens. Past 40 KB, split by topic rather than only pruning, so each read stays targeted.
