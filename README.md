@@ -62,6 +62,8 @@ All sync metadata — file paths, versions, per-file instructions — lives in [
 
 Downstream projects keep a `.sync.manifest.md` at their repo root that records which versions of which files they've received. The `/sync` skill updates this file as part of every run; no other file is modified for bookkeeping.
 
+Synced files are starting points, and downstream copies are expected to drift. The local manifest's Notes column records deliberate differences (e.g. a library adding `isolatedDeclarations` to its `tsconfig.json`), so later syncs keep them instead of flagging them again.
+
 
 ### License
 

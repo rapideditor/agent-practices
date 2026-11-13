@@ -57,7 +57,7 @@ Report what `/sync` would change, without doing it. (If this repo *is* agent-pra
 3. For each file in the source manifest, compare versions (missing row = version 0). Use the per-file instructions to tell files that are behind apart from files that don't apply here (e.g. `tsconfig.json` in a project without TypeScript).
 4. Also note orphaned rows (in the local manifest, gone from the source) and legacy `.github/prompts/*.prompt.md` files still present.
 
-Make this one item that lists what's behind (local → canonical version) and recommends `/sync`, not one item per file.
+Make this one item that lists what's behind (local → canonical version) and recommends `/sync`, not one item per file. Show each file's local Notes next to it: they record deliberate differences from the template, so that drift is expected, not a problem.
 
 ## 6. What's changed since the last activity date
 
