@@ -2,9 +2,9 @@
 
 Lint the packed tarball with [publint](https://publint.dev) and [arethetypeswrong](https://arethetypeswrong.github.io) before publishing, without needing Node or npm.
 
-**Applies when:** the project publishes a package to npm and doesn't already run these checks.
+**Applies when:** the project publishes a package to npm and doesn't already run these checks. Projects that already run them should still do step 4.
 
-**Last verified:** publint 0.3.25, @arethetypeswrong/cli 0.18.5, Bun 1.4.4, 2026-11 ([node-diff3 cbf33db](https://github.com/bhousel/node-diff3/commit/cbf33db))
+**Last verified:** publint 0.3.25, @arethetypeswrong/cli 0.18.5, Bun 1.4.4, 2026-11 ([node-diff3 cbf33db](https://github.com/bhousel/node-diff3/commit/cbf33db), [country-coder#180](https://github.com/rapideditor/country-coder/pull/180))
 
 ## Why
 
@@ -23,6 +23,11 @@ They catch `exports` that point at missing files, types that don't resolve for s
    ```
    Use `--profile esm-only` only for an [ESM-only](esm-only.md) package; a dual package uses the default profile.
 3. Add `./build` to the folders `scripts/clean.ts` removes, and `build/` to `.gitignore`.
+4. Check that every package the published `.d.ts` files import from is in `dependencies` (or `peerDependencies`), not `devDependencies`. List them with (adjust `dist` to wherever the build writes declarations):
+   ```sh
+   grep -rhoE "from ['\"][^./'\"][^'\"]*['\"]" dist --include='*.d.ts' | sort -u
+   ```
+   For a package without its own types, the dependency is its `@types` package: `from 'geojson'` needs `@types/geojson`.
 
 ## Gotchas
 
@@ -31,8 +36,10 @@ They catch `exports` that point at missing files, types that don't resolve for s
 - **`--ignore-scripts`** keeps packing from running lifecycle scripts like `prepack`; the build has already run.
 - **No Node needed.** With `[run] bun = true` in `bunfig.toml`, both tools run under Bun even though their bins start with `#!/usr/bin/env node`. With `[run] shell = "bun"`, the `./build/*.tgz` glob works on Windows too.
 - **Don't use `attw --ignore-rules`** to quiet an error. It shows green while hiding real problems; pick the right profile instead. attw still prints a line about the rules a profile ignores, which is expected.
+- **Neither tool checks the types' own dependencies.** With `@types/geojson` only in `devDependencies`, publint and attw both pass, but users get "Cannot find module 'geojson'". With `skipLibCheck` on, a common default, those types silently become `any` instead. A scratch-project test misses it too if the scratch project already has the package installed. This happened in both location-conflation and country-coder.
 - **`publint --level warning`** hides suggestions, including one to add `engines.node`. For ESM-only packages, that suggestion is deliberately not followed (see [ESM only](esm-only.md)).
 
 ## Verify
 
 - `bun run package` passes, and `bun run all` still passes from a clean checkout.
+- Every package in the step 4 list is in `dependencies` or `peerDependencies`.
