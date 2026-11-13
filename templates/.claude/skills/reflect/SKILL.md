@@ -28,7 +28,7 @@ If the user provided additional context with the prompt, treat it as a focus are
 Follow the conventions in `knowledge/README.md`. In particular:
 - Move finished work out of `current.md`: a summary to `completed.md`, the "why" to `decisions.md`, anything learned to `lessons.md`. Delete the rest.
 - Remove entries about code or files that no longer exist.
-- Condense files that are over the size budgets, oldest entries first.
+- Check sizes with `wc -c knowledge/*.md`. Condense files that are over the size budgets, oldest entries first, and split a file by topic once pruning isn't enough.
 - Keep it public: never move anything from a `PRIVATE.*` file into `knowledge/` without asking.
 
 ## Shared playbooks and lessons
