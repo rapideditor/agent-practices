@@ -4,7 +4,7 @@ Upgrade `typescript` to 7.x, the native compiler.
 
 **Applies when:** `typescript` in `devDependencies` is below 7. If the project uses typescript-eslint, do [ESLint → oxlint](eslint-to-oxlint.md) first: typescript-eslint doesn't support TypeScript 7 yet.
 
-**Last verified:** TypeScript 7.0.2, Bun 1.4.4, 2026-11 ([node-diff3#93](https://github.com/bhousel/node-diff3/pull/93), [node-diff3#98](https://github.com/bhousel/node-diff3/pull/98), [location-conflation#85](https://github.com/rapideditor/location-conflation/pull/85))
+**Last verified:** TypeScript 7.0.2, Bun 1.4.4, 2026-11 ([node-diff3#93](https://github.com/bhousel/node-diff3/pull/93), [node-diff3#98](https://github.com/bhousel/node-diff3/pull/98), [location-conflation#85](https://github.com/rapideditor/location-conflation/pull/85), [osm-community-index#884](https://github.com/osmlab/osm-community-index/pull/884))
 
 ## Why
 
@@ -21,7 +21,8 @@ Much faster type-checking and builds, and it's where TypeScript development happ
    - `esModuleInterop: false`, `allowSyntheticDefaultImports: false`, `alwaysStrict: false`
    - Options removed earlier (`importsNotUsedAsValues`, `preserveValueImports`, `suppressImplicitAnyIndexErrors`, `keyofStringsOnly`, `charset`, `out`) are now unknown options.
 4. If `tsconfig.json` didn't set `strict`, expect new errors: it's on by default now.
-5. Run the build and diff any generated `.d.ts` files against the previous build. If the build writes files (`outDir` or `declarationDir`) from sources in a subfolder like `src/`, set `"rootDir"` to that folder (e.g. `"rootDir": "src"`). Without it the build fails with error TS5011, which `tsc --noEmit` doesn't report. The output layout stays the same.
+5. Run the build and diff any generated `.d.ts` files against the previous build. If the build writes files (`outDir` or `declarationDir`) from sources in a subfolder like `src/`, set `"rootDir"` to that folder (e.g. `"rootDir": "src"`). Without it the build fails with error TS5011, which `tsc --noEmit` doesn't report. The output layout stays the same. TS5011 only appears when the sources' common folder isn't the one that holds `tsconfig.json`: a build whose sources span `lib/` and `src/` at the repo root needs no `rootDir`.
+6. Check that the tests are type-checked. Listing `test/**/*` in `include` isn't enough: `.js` files are skipped unless `allowJs` is set. Rename the tests to `.ts` (`bun test` runs them directly), and switch `bun:assert` to `node:assert` (see [lessons/bun.md](../lessons/bun.md)). Tests that pass invalid input on purpose need `// @ts-expect-error -- reason`.
 
 ## Gotchas
 
