@@ -4,7 +4,7 @@ Lint the packed tarball with [publint](https://publint.dev) and [arethetypeswron
 
 **Applies when:** the project publishes a package to npm and doesn't already run these checks. Projects that already run them should still do step 4.
 
-**Last verified:** publint 0.3.25, @arethetypeswrong/cli 0.18.5, Bun 1.4.4, 2026-11 ([node-diff3 cbf33db](https://github.com/bhousel/node-diff3/commit/cbf33db), [country-coder#180](https://github.com/rapideditor/country-coder/pull/180), [location-conflation#86](https://github.com/rapideditor/location-conflation/pull/86))
+**Last verified:** publint 0.3.25, @arethetypeswrong/cli 0.18.5, Bun 1.4.4, 2026-11 ([node-diff3 cbf33db](https://github.com/bhousel/node-diff3/commit/cbf33db), [country-coder#180](https://github.com/rapideditor/country-coder/pull/180), [location-conflation#86](https://github.com/rapideditor/location-conflation/pull/86), [osm-community-index#885](https://github.com/osmlab/osm-community-index/pull/885))
 
 ## Why
 
