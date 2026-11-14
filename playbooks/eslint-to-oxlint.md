@@ -4,7 +4,7 @@ Replace ESLint and typescript-eslint with [oxlint](https://oxc.rs/docs/guide/usa
 
 **Applies when:** `eslint` is in `devDependencies`. Do this before [TypeScript 7](typescript-7.md), because typescript-eslint doesn't support TypeScript 7 yet.
 
-**Last verified:** oxlint 1.93.0, Bun 1.4.4, 2026-11 ([node-diff3#96](https://github.com/bhousel/node-diff3/pull/96), [location-conflation#84](https://github.com/rapideditor/location-conflation/pull/84))
+**Last verified:** oxlint 1.93.0, Bun 1.4.4, 2026-11 ([node-diff3#96](https://github.com/bhousel/node-diff3/pull/96), [location-conflation#84](https://github.com/rapideditor/location-conflation/pull/84), [osm-community-index#883](https://github.com/osmlab/osm-community-index/pull/883))
 
 ## Why
 
@@ -36,6 +36,9 @@ Replace ESLint and typescript-eslint with [oxlint](https://oxc.rs/docs/guide/usa
 - Diagnostics for core rules still print as `eslint(rule-name)`. That's oxlint's label, not a sign ESLint is still installed.
 - Existing `// eslint-disable-next-line` comments keep working in oxlint, so they can stay.
 - Rules like `no-dupe-args`, `no-octal` and `no-octal-escape` describe code that can't parse as an ES module, so dropping them loses nothing in an ESM project.
+- oxlint may find things ESLint didn't, through rules in its `correctness` category that ESLint lacked or reported differently:
+  - `no-shadow-restricted-names` flags `namespace globalThis { … }` inside `declare global`. That's the standard way to declare a global, so add the rule to a disable comment on that line.
+  - `typescript/no-useless-empty-export` flags a leftover `export {}` in a file that already has an `import` or `export`. Deleting it is safe.
 
 ## Verify
 
