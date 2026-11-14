@@ -4,7 +4,7 @@ Lint the packed tarball with [publint](https://publint.dev) and [arethetypeswron
 
 **Applies when:** the project publishes a package to npm and doesn't already run these checks. Projects that already run them should still do step 4.
 
-**Last verified:** publint 0.3.25, @arethetypeswrong/cli 0.18.5, Bun 1.4.4, 2026-11 ([node-diff3 cbf33db](https://github.com/bhousel/node-diff3/commit/cbf33db), [country-coder#180](https://github.com/rapideditor/country-coder/pull/180))
+**Last verified:** publint 0.3.25, @arethetypeswrong/cli 0.18.5, Bun 1.4.4, 2026-11 ([node-diff3 cbf33db](https://github.com/bhousel/node-diff3/commit/cbf33db), [country-coder#180](https://github.com/rapideditor/country-coder/pull/180), [location-conflation#86](https://github.com/rapideditor/location-conflation/pull/86))
 
 ## Why
 
@@ -29,6 +29,8 @@ They catch `exports` that point at missing files, types that don't resolve for s
    ```
    For a package without its own types, the dependency is its `@types` package: `from 'geojson'` needs `@types/geojson`.
 
+   The grep only finds imports. Also check that the `.d.ts` files *import* every type they use: some `@types` packages declare a global namespace (`@types/geojson` declares `GeoJSON`), and a `.d.ts` that writes `GeoJSON.Feature` without importing it only works when those types happen to be loaded. TypeScript 7 consumers don't load `@types/*` automatically, so for them it fails. Find candidates with `grep -rln 'GeoJSON\.' dist --include='*.d.ts'`, and fix them in the source with `import type * as GeoJSON from 'geojson'`.
+
 ## Gotchas
 
 - **`attw --pack` runs `npm pack`**, so it needs npm. Pack with `bun pm pack` and pass the tarball instead.
@@ -43,3 +45,4 @@ They catch `exports` that point at missing files, types that don't resolve for s
 
 - `bun run package` passes, and `bun run all` still passes from a clean checkout.
 - Every package in the step 4 list is in `dependencies` or `peerDependencies`.
+- In a scratch project, install the packed tarball (`bun add ./path/to/pkg.tgz typescript`) and type-check a file that imports the package, with `"types": []` and `"skipLibCheck": false`. This catches types that only resolve by accident, which publint and attw don't.
