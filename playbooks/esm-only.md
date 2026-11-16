@@ -4,7 +4,7 @@ Stop shipping a CommonJS build, and let `require()` load the ES module build ins
 
 **Applies when:** a published package still builds a `.cjs` file (or points `main` / the `require` condition at one), and the maintainer is ready for a major release.
 
-**Last verified:** Node 22, Bun 1.4.4, 2026-11 ([node-diff3#98](https://github.com/bhousel/node-diff3/pull/98))
+**Last verified:** Node 22, Bun 1.4.4, 2026-11 ([node-diff3#98](https://github.com/bhousel/node-diff3/pull/98), [name-suggestion-index#13113](https://github.com/osmlab/name-suggestion-index/pull/13113))
 
 ## Why
 
@@ -13,7 +13,7 @@ Stop shipping a CommonJS build, and let `require()` load the ES module build ins
 
 ## Steps
 
-1. Remove the CommonJS build from the build script.
+1. Remove the CommonJS build from the build script. The ES module build of a Node library should use `packages: 'external'` (see [lessons/bun.md](../lessons/bun.md)).
 2. Set `"type": "module"` and write `exports` in this order:
    ```json
    "exports": {
@@ -38,6 +38,8 @@ Stop shipping a CommonJS build, and let `require()` load the ES module build ins
 - **`require` before `browser`.** A bundler resolving a `require()` call for a browser target matches conditions in order. If `browser` comes first, it picks the IIFE, which has no exports.
 - **No top-level `await`** in the ES module. `require()` can't load a module that uses it.
 - **arethetypeswrong** still reports `require` → ESM as an error under its default profile. Run it with `--profile esm-only`.
+- **A stale `.cjs` gets packed.** The build script doesn't delete old output, so the `.cjs` from the last build stays in `dist/` and goes into the tarball. Run `clean` first (`bun run all` does).
+- **Wildcard exports** like `"./dist/*": "./dist/*"` make publint warn that each IIFE bundle under `dist/` is "CJS interpreted as ESM". Block the scripts' folder with a more specific entry before the wildcard, e.g. `"./dist/js/*": null`. That stops subpath imports of the scripts, while CDN URLs keep working.
 - **CDN users** load files by path (e.g. `dist/diff3.iife.min.js`). If the layout changes, pages that load `@latest` break, so call it out as a breaking change.
 
 ## Verify
@@ -45,5 +47,5 @@ Stop shipping a CommonJS build, and let `require()` load the ES module build ins
 - `bun run package` (publint and arethetypeswrong) passes.
 - In a scratch project with the package linked or packed in:
   - `import` and `require()` both work on Node 22.
-  - Types resolve under `moduleResolution` `bundler`, and under `nodenext` from both an ESM and a CommonJS file.
+  - Types resolve under `moduleResolution` `bundler`, and under `nodenext` from both an ESM and a CommonJS file. For the CommonJS side, `import x = require('pkg')` in a `.cts` file works without `@types/node`.
   - Bun loads the TypeScript source, if there's a `bun` condition.

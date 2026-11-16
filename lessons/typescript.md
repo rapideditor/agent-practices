@@ -16,4 +16,10 @@
 
 **Under `noUncheckedIndexedAccess`, tests that compare whole results are easier than tests that index into them.** `assert.deepStrictEqual(result, expected)` needs no `!` or guards, and also checks fields a piecemeal test would miss. (verified: TypeScript 7.0.2, 2026-11)
 
+**Under `noUncheckedIndexedAccess`, loop with `Object.entries()` rather than `Object.keys()` and `obj[key]`.** The value from `entries()` isn't `| undefined`, so most of the new errors go away with no `!` or guards. (verified: TypeScript 7.0.2, 2026-11)
+
+**Declare a fixed object with `satisfies T` instead of `: T` to keep its literal keys.** With `: Record<string, X>`, `obj.foo` is `X | undefined` under `noUncheckedIndexedAccess`; with `satisfies Record<string, X>`, it's `X`, and a missing key is a compile error. Handy for test fixtures. (verified: TypeScript 7.0.2, 2026-11)
+
+**TypeScript silently ignores a file listed in `include` that doesn't exist.** A config can keep naming a deleted `ambient.d.ts` for years. Check the `include` lists by hand during an upgrade. (verified: TypeScript 7.0.2, 2026-11)
+
 **To accept "an array of `T`, or a string to split when `T` is `string`", use a conditional type:** `readonly T[] | (T extends string ? string : never)`. Callers with non-string `T` can't pass a string by mistake. (verified: TypeScript 7.0.2, 2026-11)
