@@ -12,4 +12,8 @@
 
 **`bun:assert` has no type declarations.** In TypeScript tests, use `node:assert`, which Bun supports. (verified: Bun 1.4.4, @types/bun 1.4.4, 2026-11)
 
+**`bun:util` isn't a documented module and has no type declarations**, though Bun resolves it at runtime. Use `node:util`. (verified: Bun 1.4.4, @types/bun 1.4.4, 2026-11)
+
+**For a Node library build, `Bun.build()` needs `packages: 'external'`.** The default, `packages: 'bundle'`, inlines every dependency, which suits a browser IIFE but not a library whose users install its dependencies themselves. `'external'` keeps bare specifiers as imports and still bundles relative ones; `external: ['*']` does the same more bluntly. Relative JSON imports are inlined either way. (verified: Bun 1.4.4, 2026-11)
+
 **CI should run `bun install --frozen-lockfile`.** It fails when `bun.lock` is out of step with `package.json`, instead of quietly rewriting the lockfile. (verified: Bun 1.4.4, 2026-11)
