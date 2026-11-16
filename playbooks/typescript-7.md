@@ -4,7 +4,7 @@ Upgrade `typescript` to 7.x, the native compiler.
 
 **Applies when:** `typescript` in `devDependencies` is below 7. If the project uses typescript-eslint, do [ESLint → oxlint](eslint-to-oxlint.md) first: typescript-eslint doesn't support TypeScript 7 yet.
 
-**Last verified:** TypeScript 7.0.2, Bun 1.4.4, 2026-11 ([node-diff3#93](https://github.com/bhousel/node-diff3/pull/93), [node-diff3#98](https://github.com/bhousel/node-diff3/pull/98), [location-conflation#85](https://github.com/rapideditor/location-conflation/pull/85), [osm-community-index#884](https://github.com/osmlab/osm-community-index/pull/884), [name-suggestion-index#13110](https://github.com/osmlab/name-suggestion-index/pull/13110))
+**Last verified:** TypeScript 7.0.2, Bun 1.4.4, 2026-11 ([node-diff3#93](https://github.com/bhousel/node-diff3/pull/93), [node-diff3#98](https://github.com/bhousel/node-diff3/pull/98), [location-conflation#85](https://github.com/rapideditor/location-conflation/pull/85), [osm-community-index#884](https://github.com/osmlab/osm-community-index/pull/884), [name-suggestion-index#13110](https://github.com/osmlab/name-suggestion-index/pull/13110), [temaki#114](https://github.com/rapideditor/temaki/pull/114))
 
 ## Why
 
@@ -34,6 +34,6 @@ Much faster type-checking and builds, and it's where TypeScript development happ
 ## Verify
 
 - `bun run check` and `bun run build` pass.
-- Type-check each script and test on its own, or grep for `Bun.` in files that don't import from `'bun'`, to catch globals that only resolved by accident. TypeScript 7 refuses to check files named on the command line while a `tsconfig.json` is present (error TS5112), so pass `--ignoreConfig` along with the options you need, e.g. `tsc --ignoreConfig --noEmit --strict --module preserve --target esnext --types bun scripts/build_js.ts`. Add whatever else the project's imports rely on, such as `--allowImportingTsExtensions` for `.ts` specifiers and `--resolveJsonModule` for JSON imports. In a zsh loop, keep the flags in an array (see [lessons/shell.md](../lessons/shell.md)).
+- Type-check each script and test on its own, or grep for `Bun.` in files that don't import from `'bun'`, to catch globals that only resolved by accident. TypeScript 7 refuses to check files named on the command line while a `tsconfig.json` is present (error TS5112), so pass `--ignoreConfig` along with the options you need, e.g. `tsc --ignoreConfig --noEmit --strict --module preserve --target esnext --types bun scripts/build_js.ts`. Add whatever else the project's imports rely on, such as `--allowImportingTsExtensions` for `.ts` specifiers, `--resolveJsonModule` for JSON imports, and `--moduleDetection force` if the tsconfig sets it. Without it, a script that uses top-level `await` and has no imports fails with TS1375, though the real config passes. In a zsh loop, keep the flags in an array (see [lessons/shell.md](../lessons/shell.md)).
 - Every file in each `tsconfig`'s `include` still exists. TypeScript ignores missing ones silently.
 - Generated `.d.ts` files are unchanged, or the changes are intended.
