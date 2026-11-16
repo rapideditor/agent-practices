@@ -2,7 +2,9 @@
 
 Gotchas and facts about the tools we use, collected from real work across projects. Each one cost someone time once; reading it should save the next agent that time.
 
-Lessons aren't synced into downstream projects. An agent fetches this index when it's relevant (before working with one of these tools in an unfamiliar way, or when something behaves unexpectedly), then reads only the files it needs. Links below are relative, so fetch them from the same base URL as this file.
+Lessons aren't synced into downstream projects. An agent in a downstream project fetches this index at session start, then reads the files for the tools that project uses. Links below are relative, so fetch them from the same base URL as this file.
+
+Because they're read at the start of every session, keep the files short: one bold sentence per lesson and a line or two after it. Delete lessons that no longer apply, rather than letting the files grow.
 
 ## Index
 

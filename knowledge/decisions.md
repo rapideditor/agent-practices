@@ -33,7 +33,13 @@ Downstream copies are expected to drift. The local manifest's Notes column recor
 
 ## Shared playbooks and lessons are fetched, not synced (Nov 2026)
 
-`playbooks/` and `lessons/` are read when relevant, and only the entries that apply. Syncing them would copy every lesson into every project and make each update a version bump. The synced `AGENTS.md` points at their indexes, and `/reflect` suggests additions without editing them. ([#7](https://github.com/rapideditor/agent-practices/pull/7))
+`playbooks/` and `lessons/` are fetched, and only the entries that apply. Syncing them would copy every lesson into every project and make each update a version bump. The synced `AGENTS.md` points at their indexes, and `/reflect` suggests additions without editing them. ([#7](https://github.com/rapideditor/agent-practices/pull/7))
+
+## Lessons are read at session start (Nov 2026)
+
+At first, lessons were fetched only "when relevant", like playbooks. In practice that meant before an upgrade, so everyday work never saw them. They're now read at the start of every downstream session, for the tools the project uses. That's cheap while the files stay short (about 9 KB for all of them in Nov 2026), so the lessons README asks for short entries and regular pruning. Playbooks are still read only before an upgrade.
+
+This whole repo is written for agents. Its users are agents starting sessions in any of the downstream projects, so its structure, wording and fetch paths should suit them, even where a layout for people would differ. The raw files are fetched with `curl` rather than a web-fetch tool, because those can summarize the page and drop details.
 
 ## Project knowledge is committed and public (Nov 2026)
 

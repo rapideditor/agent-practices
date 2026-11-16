@@ -31,7 +31,7 @@ Each skill lives at [`templates/.claude/skills/<name>/SKILL.md`](templates/.clau
 
 ## Shared playbooks and lessons
 
-Alongside the synced templates, this repo keeps knowledge that applies across projects. It's never synced: agents fetch it when it's relevant, and the synced `AGENTS.md` tells them where to find it.
+Alongside the synced templates, this repo keeps knowledge that applies across projects. It's written for agents and never synced: the synced `AGENTS.md` tells agents in each project to read the lessons at session start, and the playbooks before an upgrade.
 
 - [`playbooks/`](playbooks/README.md): step-by-step guides for one-time upgrades, like switching from ESLint to oxlint or moving to TypeScript 7. `/checkup` lists the ones that apply to a project.
 - [`lessons/`](lessons/README.md): gotchas with the tools we use, grouped by topic (Bun, TypeScript, packaging, git, shell).
@@ -43,7 +43,7 @@ So there are three layers:
 | Layer | Where | How it gets to a project |
 |-------|-------|--------------------------|
 | Templates: steady-state files and skills | `templates/` | Synced by `/sync`, versioned in the manifest |
-| Shared playbooks and lessons | `playbooks/`, `lessons/` | Fetched on demand, not versioned |
+| Shared playbooks and lessons | `playbooks/`, `lessons/` | Fetched (lessons at session start, playbooks before an upgrade), not versioned |
 | Project knowledge | Each project's `knowledge/` folder (committed, public) and `PRIVATE.*` files (gitignored) | Stays in the project; only `knowledge/README.md` is synced |
 
 ## Project knowledge
@@ -64,7 +64,7 @@ knowledge/            # ← this repo's own project knowledge (see templates/kno
 playbooks/            # ← one-time upgrade guides, fetched on demand (not synced)
   README.md           # ← index and format
   …
-lessons/              # ← cross-project gotchas by topic, fetched on demand (not synced)
+lessons/              # ← cross-project gotchas by topic, fetched at session start (not synced)
   README.md           # ← index and format
   …
 templates/            # ← everything under here will be synced to consumer projects
