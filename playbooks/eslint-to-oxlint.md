@@ -21,6 +21,8 @@ Replace ESLint and typescript-eslint with [oxlint](https://oxc.rs/docs/guide/usa
    - `"plugins": ["typescript"]` in a TypeScript project. Core ESLint rules don't need a plugin entry. Some ESLint core rules live in another oxlint plugin: `no-process-env` is `node/no-process-env`, which needs `"node"` in `plugins`. `eslint-plugin-import` carries over too: add `"import"` and keep the `import/` rule names (e.g. `import/no-duplicates`).
    - Setting `plugins` replaces oxlint's default list (`eslint`, `typescript`, `unicorn`, `oxc`), so the `unicorn` and `oxc` rules turn off. That matches the old ESLint setup more closely, but add them back if you want them.
    - `"categories": { "correctness": "error" }`, then each rule from the old config with the same severity and options. `oxlint --rules` lists what exists; `oxlint --rules -f json` gives each rule's plugin and category, which makes it easy to map the saved ESLint rule list.
+   - Keep the config minimal: list only what differs from oxlint's defaults. Leave out rules set to `"error"` that `correctness` already turns on, rules set to `"off"` that no enabled category turns on, and options that match the rule's defaults (write `"radix": "error"`, not `["error", "always"]`). The ESLint config often spelled these out; carrying them over just adds noise.
+   - Option names don't always carry over. Some are camelCase in oxlint: `import/no-duplicates` takes `preferInline`, not `prefer-inline`. oxlint accepts an unknown option without a word, but the `$schema` makes the editor flag it (as a confusing "Array has too many items"). Check each option against the schema.
    - Rules that the shared configs turned on, but that aren't in oxlint's `correctness` category, must be listed explicitly. Otherwise they silently turn off.
    - The reverse happens too: `correctness` turns on rules the old config turned off (e.g. `no-useless-escape`). Set those to `"off"` explicitly. Correctness rules marked type-aware only run with `--type-aware`, so they can be ignored.
    - Rule names: core rules use the plain name (`no-unused-vars`). TypeScript rules use the `typescript/` prefix (`typescript/no-explicit-any`), not `@typescript-eslint/`. Where typescript-eslint had its own version of a core rule (`@typescript-eslint/no-unused-vars`), use oxlint's core rule with the same options.
@@ -43,6 +45,7 @@ Replace ESLint and typescript-eslint with [oxlint](https://oxc.rs/docs/guide/usa
 
 ## Verify
 
-- `oxlint --print-config` shows the effective config. Compare its rule list with the old ESLint setup, to catch rules that silently turned off.
+- `oxlint --print-config` shows the effective config. Compare its rule list with the old ESLint setup, to catch rules that silently turned off. After trimming the config down, save the output before and after and diff them: the only changes should be dropped `"allow"` entries, dropped default options, and rules that did nothing (like `no-restricted-properties` with no options).
+- The editor shows no schema warnings in `.oxlintrc.json`.
 - `bun run check` passes, and `bun audit` is clean (or better than before).
 - `grep -rn eslint` finds nothing left except comments, the changelog and `eslint-disable` comments.
