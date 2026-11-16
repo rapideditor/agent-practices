@@ -2,7 +2,7 @@
 
 Lint the packed tarball with [publint](https://publint.dev) and [arethetypeswrong](https://arethetypeswrong.github.io) before publishing, without needing Node or npm.
 
-**Applies when:** the project publishes a package to npm and doesn't already run these checks. Projects that already run them should still do step 4.
+**Applies when:** the project publishes a package to npm and doesn't already run these checks. Projects that already run them should still do step 4. A package with no JavaScript entry point (no `main`, `exports` or `types`, e.g. an icon set) can skip this: arethetypeswrong has nothing to check, and publint has little.
 
 **Last verified:** publint 0.3.25, @arethetypeswrong/cli 0.18.5, Bun 1.4.4, 2026-11 ([node-diff3 cbf33db](https://github.com/bhousel/node-diff3/commit/cbf33db), [country-coder#180](https://github.com/rapideditor/country-coder/pull/180), [location-conflation#86](https://github.com/rapideditor/location-conflation/pull/86), [osm-community-index#885](https://github.com/osmlab/osm-community-index/pull/885), [name-suggestion-index#13113](https://github.com/osmlab/name-suggestion-index/pull/13113))
 
