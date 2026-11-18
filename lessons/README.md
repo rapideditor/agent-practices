@@ -14,6 +14,7 @@ Because they're read at the start of every session, keep the files short: one bo
 | [typescript.md](typescript.md) | TypeScript compiler options and type patterns |
 | [packaging.md](packaging.md) | Publishing to npm: `exports`, `engines`, package linting |
 | [git.md](git.md) | Git and GitHub workflow in these repos |
+| [playwright.md](playwright.md) | Playwright Test: network recording, browsers in CI |
 | [shell.md](shell.md) | Shell quirks agents run into (zsh on macOS) |
 
 ## Writing a lesson

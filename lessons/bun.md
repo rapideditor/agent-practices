@@ -17,3 +17,5 @@
 **For a Node library build, `Bun.build()` needs `packages: 'external'`.** The default, `packages: 'bundle'`, inlines every dependency, which suits a browser IIFE but not a library whose users install its dependencies themselves. `'external'` keeps bare specifiers as imports and still bundles relative ones; `external: ['*']` does the same more bluntly. Relative JSON imports are inlined either way. (verified: Bun 1.4.4, 2026-11)
 
 **CI should run `bun install --frozen-lockfile`.** It fails when `bun.lock` is out of step with `package.json`, instead of quietly rewriting the lockfile. (verified: Bun 1.4.4, 2026-11)
+
+**`bun update` can move a package to an older release when its versions carry a prerelease-style suffix.** In a semver range, a prerelease only matches on the same `major.minor.patch`, so `^2.6.0-cloc` skips every later `-cloc` release, and cloc's highest plain version is a `2.11.0` from 2022 (its `latest` is `2.12.0-cloc`). Check what `bun update` did to such packages, and pin them to the current suffixed version. (verified: Bun 1.4.4, 2026-11)
