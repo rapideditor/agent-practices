@@ -22,6 +22,18 @@ If the user provided additional context with the prompt, treat it as a focus are
 - Agent instructions and skills (`AGENTS.md`, `.claude/skills/`, `copilot-instructions`, etc.)
 - Project knowledge in `knowledge/` (or whatever convention this project uses, see `AGENTS.md`)
 - Design docs in `design/`, if the project has them
+- The project's GitHub wiki, if it has one (see below)
+
+## Project wiki
+
+Some projects also keep docs in a GitHub wiki. Its pages go stale when commands, file paths, scripts or behavior change, and nothing in the repo points out that they need updating.
+
+- Check whether the project has one: `GIT_TERMINAL_PROMPT=0 git ls-remote https://github.com/OWNER/REPO.wiki.git` succeeds only if the wiki has pages. If it fails, skip this section.
+- The wiki is its own git repo, and `gh` has no commands for it. Clone it into a scratch directory, outside the project.
+- Grep the pages for whatever this work changed (commands, paths, script names, removed files), then read the pages that cover the changed systems. `AGENTS.md` may say which pages are the most likely to go stale.
+- Check every claim against the code before changing it. Keep each page's voice: wikis are often written for contributors who don't code.
+- Wiki links look like `[[label|Page Name#anchor]]`, and `_Sidebar.md` is the navigation.
+- Edit the clone, but don't commit or push. Show the user `git diff --stat` and the path to the clone, and push only once they approve. A push publishes immediately, with no review step. If pushing over HTTPS asks for credentials, push to the SSH URL (`git@github.com:OWNER/REPO.wiki.git`) instead.
 
 ## Pruning project knowledge
 
