@@ -24,6 +24,7 @@ Each skill lives at [`templates/.claude/skills/<name>/SKILL.md`](templates/.clau
 | [`/commit`](templates/.claude/skills/commit/SKILL.md) | Stages and commits all changes with a summarized message (doesn't push) | Commits | you |
 | [`/reflect`](templates/.claude/skills/reflect/SKILL.md) | Brings docs, agent instructions, and project knowledge up to date with recent work, and prunes stale notes | Yes, docs | you or the agent |
 | [`/release`](templates/.claude/skills/release/SKILL.md) | Prepares a release: validates the version, updates `CHANGELOG.md`, bumps `package.json` | Yes | you |
+| [`/sharpen`](templates/.claude/skills/sharpen/SKILL.md) | Goes deep on one part of the codebase after a burst of work: one job per class, one meaning per word, names that follow the conventions, and what can go | No, report only (then makes the changes you pick) | you |
 | [`/suggest`](templates/.claude/skills/suggest/SKILL.md) | Reviews the codebase and suggests improvements as a numbered list | No, report only | you or the agent |
 | [`/sync`](templates/.claude/skills/sync/SKILL.md) | Syncs scaffold files from this repo into a downstream project | Yes | you |
 | [`/triage`](templates/.claude/skills/triage/SKILL.md) | Triages open issues and PRs: already fixed, duplicates, stale, ready to merge, quick wins, with draft replies | No, report only | you or the agent |
